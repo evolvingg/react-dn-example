@@ -18,6 +18,7 @@ export default class News extends React.Component{
 	chk()
 	{
 		//this.props.chk(this.props.id);
+		document.getElementsByClassName('upvote')[1].classList.add('none');
 	}
 	upVote()
 	{
@@ -25,6 +26,7 @@ export default class News extends React.Component{
 	}
 
 	render(){
+		console.log(this.props);
 		return( 
 			   <tr>
 			   <td className="upvote">
@@ -33,9 +35,11 @@ export default class News extends React.Component{
                </td>
                <td className="news">{this.props.name}</td>
                <td className="star">
-               <i className={this.isStarred ?"star starred":"star"} 
-                  onClick={this.isStarred ? this.removeStar: this.onStar}></i>
+                    <i className={this.isStarred ?"star starred":"star"} 
+                    onClick={this.isStarred ? this.removeStar: this.onStar}></i>
                </td>
-               </tr>)
+               </tr>
+
+            )
 	}
 }

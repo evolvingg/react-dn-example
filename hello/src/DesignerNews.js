@@ -7,10 +7,11 @@ export default class DesignerNews extends React.Component{
     super(props);
     this.onStar = this.onStar.bind(this);
     this.removeStar=this.removeStar.bind(this);
+    this.upVote=this.upVote.bind(this);
     this.state = {
       newsList: news,
       starred:[],
-      data:news.data
+      data1:news.data
     }
   }
 
@@ -18,6 +19,7 @@ export default class DesignerNews extends React.Component{
   {
     console.log("starred");
     var newsList = this.state.newsList.slice(0).map(news => Object.assign({}, news));
+    console.log(newsList);
     var selectedNews = newsList.find(selectedNews => selectedNews.id === id);
     var starred=this.state.starred.slice(0).map(item => Object.assign({}, item));
     selectedNews.isStarred=true;
@@ -31,12 +33,14 @@ export default class DesignerNews extends React.Component{
   
   upVote(id){
     var newsList = this.state.newsList.slice(0).map(news => Object.assign({}, news));
+    console.log(newsList);
     var selectedNews = newsList.find(selectedNews => selectedNews.id === id);
-    selectedNews.data++;
+    selectedNews.data=selectedNews.data+1;
+    console.log(selectedNews.data);
     selectedNews.upvoted=true;
     this.setState({
-    	data:selectedNews.data
-    })
+    	newsList
+    });
   }
 
   removeStar(id)
@@ -46,6 +50,7 @@ export default class DesignerNews extends React.Component{
     var selectedNews = newsList.find(selectedNews => selectedNews.id === id);
     var starred=this.state.starred.slice(0).map(item => Object.assign({}, item));
     var index;
+    console.log("----hello")
     var starredItemRemove = starred.find(starredItemRemove => starredItemRemove.id === id);
     index=starred.indexOf(starredItemRemove);
     if(index>-1)

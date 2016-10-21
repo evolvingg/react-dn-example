@@ -7,7 +7,7 @@ export default class NewsList extends React.Component{
 	}
 
 	render(){
-    var products = this.props.newsList.map(news => {
+    var products = this.props.newsList.sort((a,b) => b.data-a.data).map(news => {
       return (      
         <News 
         key={news.id}
